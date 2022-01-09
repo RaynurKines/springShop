@@ -1,0 +1,35 @@
+ul {
+  list-style: none;
+  margin: 0 auto;
+}
+a {
+  text-decoration: none;
+  font-family: 'Lora', serif;
+  transition: .5s linear;
+}
+i {
+  margin-right: 10px;
+}
+nav {
+  display: block;
+  width: 100%;
+  margin: 0;
+}
+.navigation ul {
+  display: -webkit-flex;
+  display: flex;
+  justify-content: center;
+  background: #FFD7A7;
+  padding-left: 0;
+}
+.navigation li {
+
+}
+.navigation a {
+  padding: 1em;
+  display: block;
+  color: #9B4222;
+  border-right: 1px solid #FFAB51;
+  background: rgba(255, 171, 81, .3);
+}
+.navigation a:hover {background: #FFAB51}

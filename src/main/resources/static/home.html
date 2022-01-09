@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="style/home.css">
+</head>
+<header>
+    <nav class="navigation">
+        <ul>
+            <li><a href="#"><i class="fa fa-home fa-fw"></i>Home</a></li>
+            <li><a href="#">Customers</a></li>
+            <li><a href="#">Products</a></li>
+            <li><a href="#">Storage</a></li>
+            <li><a href="#">Purchase</a></li>
+        </ul>
+    </nav>
+</header>
+<body>
+<div class="flex-vertical">
+    <div class="flex-horizontal">
+    </div>
+    <div>
+        <table class="dbtable">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>E-mail</th>
+                <th>Address</th>
+            </tr>
+            <c:forEach items="${listCustomer}" var="customer">
+                <tr>
+                    <td>${customer.id}</td>
+                    <td>${customer.name}</td>
+                    <td>${customer.email}</td>
+                    <td>${customer.address}</td>
+                </tr>
+            </c:forEach>
+        </table>
+    </div>
+</div>
+</body>
+</html>
