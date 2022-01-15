@@ -3,6 +3,8 @@ import Products from "./pages/products/products";
 import {Routes, Route, Link} from "react-router-dom";
 import Customers from "./pages/customers/customers";
 import Order from "./pages/order/order";
+import OrderCreate from "./pages/orderCreate/orderCreate";
+import Reports from "./pages/reports/reports";
 
 function App() {
   return (
@@ -18,6 +20,12 @@ function App() {
                 <li>
                     <Link style={{ textDecoration: 'none' }} to="/order">Заказ</Link>
                 </li>
+                <li>
+                    <Link style={{ textDecoration: 'none' }} to="/order-create">Создание заказа</Link>
+                </li>
+                <li>
+                    <Link style={{ textDecoration: 'none' }} to="/reports">Отчёты</Link>
+                </li>
             </ul>
         </div>
 
@@ -27,6 +35,8 @@ function App() {
             <Route path='/products' element={<Products/>}/>
             <Route path='/customers' element={<Customers/>}/>
             <Route path='/order' element={<Order/>}/>
+            <Route path='/order-create' element={<OrderCreate/>}/>
+            <Route path='/reports' element={<Reports/>}/>
         </Routes>
     </div>
   );

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import Modal from "../components/Modal/Modal";
 import "../components/Modal/modal.css"
+import './style.css'
 
 const Products = () => {
 
@@ -12,6 +13,7 @@ const Products = () => {
 
     const [nameProduct, setNameProduct] = useState('')
     const [price, setPrice] = useState('')
+
 
     const myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
@@ -45,40 +47,77 @@ const Products = () => {
             if (res.status === 403) {
                 console.log('not Ok')
             }
+            if(res.status ===500){
+               alert('товар уже был продан')
+            }
         }).catch((errors) => console.error(errors))
     }
 
-    const nameHandler = (e) => {
-        setNameProduct(e.target.value)
-        console.log(nameProduct)
+    const addProduct = async (e) => {
+        e.preventDefault();
+        await fetch(`http://localhost:8080/products/create?name=${nameProduct}&price=${price}`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+
+        }).then((res) => {
+            if (res.status === 400) {
+                console.log('чёт не пошло')
+            }
+            if (res.status === 200) {
+                console.log('всё ок')
+                setGetData((prevState => !prevState))
+            }
+        }).catch((errors) => console.log(errors))
     }
 
-
     return (
+
         <div>
-            {products.map(item =>
-                <div>
-                    {item.name}
-                    <button onClick={() => deletePost(item.id)}>
-                        удалить позицию
-                    </button>
-                </div>
-            )}
             <h1>Продукты</h1>
+            <div className='table'>
+                <div className="table-wrapper">
+                    <table className="fl-table">
+                        <thead>
+                        <tr>
+                            <th>Товар</th>
+                            <th>Цена</th>
+                            <th>Удалить</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {products.map(item =>
+                            <>
+                                <tr>
+                                    <td>{item.name}</td>
+                                    <td>{item.price}</td>
+                                    <button className='btn' onClick={() => deletePost(item.id)}>
+                                        удалить позицию
+                                    </button>
+                                </tr>
+                            </>
+                        )}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
             <button onClick={() => setModalActive(true)}>
                 добавить позицию
             </button>
 
             <Modal active={modalActive} setActive={setModalActive}>
-                <div>
-                    имя товара <input type="text"/>
-                </div>
-                <div>
-                    цена товара <input type="text" onChange={e=>nameHandler(e)} value={nameProduct}/>
-                </div>
-                <input type="submit" value="создать товар" className="type-1" onClick={() => {
-                    setModalActive(false)
-                }}/>
+                <form action="" onSubmit={addProduct}>
+                    <div>
+                        имя товара <input type="text" onChange={event => setNameProduct(event.target.value)}
+                                          value={nameProduct}/>
+                    </div>
+                    <div>
+                        цена товара <input type="text" onChange={event => setPrice(event.target.value)} value={price}/>
+                    </div>
+                    <input type="submit" value="создать товар" className="type-1" onClick={() => {
+                        setModalActive(false)
+                    }}/>
+                </form>
             </Modal>
         </div>
     );
