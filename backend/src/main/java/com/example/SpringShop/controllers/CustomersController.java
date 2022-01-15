@@ -1,7 +1,9 @@
 package com.example.SpringShop.controllers;
 
 import com.example.SpringShop.model.Customer;
+import com.example.SpringShop.model.Purchase;
 import com.example.SpringShop.service.impl.CustomerServiceImpl;
+import com.example.SpringShop.service.impl.PurchaseServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,8 @@ import java.util.List;
 public class CustomersController {
     @Autowired
     private CustomerServiceImpl customerServiceImpl;
+    @Autowired
+    private PurchaseServiceImpl purchaseServiceImpl;
 
     @GetMapping("/show-all")
     @ResponseBody
@@ -61,5 +65,11 @@ public class CustomersController {
     public void deleteCustomer(@PathVariable("id") long id) {
         Customer customer = customerServiceImpl.getCustomerById(id);
         customerServiceImpl.deleteCustomer(customer);
+    }
+
+    @GetMapping("/{id}/get-purchases")
+    @ApiOperation(value ="Get purchases by customer_id")
+    public List<Purchase> getPurchasesByCustomerId(@PathVariable("customer_id") long customerId) {
+        return purchaseServiceImpl.getAllByCustomer(customerId);
     }
 }

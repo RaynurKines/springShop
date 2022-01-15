@@ -1,5 +1,6 @@
 package com.example.SpringShop.service.impl;
 
+import com.example.SpringShop.model.Customer;
 import com.example.SpringShop.model.Purchase;
 import com.example.SpringShop.repository.PurchaseRepository;
 import com.example.SpringShop.service.PurchaseService;
@@ -43,5 +44,10 @@ public class PurchaseServiceImpl implements PurchaseService {
     @Override
     public void addPurchases(List<Purchase> purchases){
         purchaseRepository.saveAll(purchases);
+    }
+
+    @Override
+    public List<Purchase> getAllByCustomer(long customerId) {
+        return purchaseRepository.findAllByCustomer(customerId);
     }
 }
