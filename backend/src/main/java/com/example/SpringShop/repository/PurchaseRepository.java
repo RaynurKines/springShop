@@ -10,5 +10,5 @@ import java.util.List;
 
 public interface PurchaseRepository extends JpaRepository<Purchase, Long> {
     @Query("select p from Purchase p where p.customer = :customer")
-    List<Purchase> findAllByCustomer(@Param("customer") long id);
+    List<Purchase> findAllByCustomer(@Param("customer") Customer customer);
 }

@@ -67,6 +67,7 @@ public class PurchaseController {
     @GetMapping("/{customer_id}/get-purchases")
     @ApiOperation(value ="Get purchases by customer_id")
     public List<Purchase> getPurchasesByCustomerId(@PathVariable("customer_id") long customerId) {
-        return purchaseServiceImpl.getAllByCustomer(customerId);
+        Customer customer = customerServiceImpl.getCustomerById(customerId);
+        return purchaseServiceImpl.getAllByCustomer(customer);
     }
 }

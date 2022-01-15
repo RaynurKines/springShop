@@ -13,5 +13,5 @@ public interface PurchaseService {
     List<Purchase> getAll();
     Purchase getPurchaseById(long id);
     void addPurchases(List<Purchase> purchases);
-    List<Purchase> getAllByCustomer(long customerId);
+    List<Purchase> getAllByCustomer(Customer customer);
 }
