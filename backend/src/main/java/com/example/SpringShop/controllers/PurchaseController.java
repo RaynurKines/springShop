@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -43,12 +44,14 @@ public class PurchaseController {
     @PostMapping("/create")
     @ApiOperation(value = "Create purchase")
     public void createPurchase(@RequestParam("customer_id") long customerId,
-                               @RequestParam("products_id") List<Long> productsId) {
+                               @RequestParam("products_id") String stringProductsId) {
         Customer customer = customerServiceImpl.getCustomerById(customerId);
         List<Product> products = new ArrayList<>();
-        productsId.forEach(productId -> {
+        List<String> splitedStringProductsId = Arrays.asList(stringProductsId.split(","));
+        splitedStringProductsId.stream().mapToLong(Long::parseLong).forEach(
+                (productId -> {
             products.add(productServiceImpl.getProductById(productId));
-        });
+        }));
         Purchase purchase = new Purchase(customer, products);
 
         purchaseServiceImpl.addPurchase(purchase);
