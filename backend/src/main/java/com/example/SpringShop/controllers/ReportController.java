@@ -43,10 +43,11 @@ public class ReportController {
                 .mapToDouble(Double::doubleValue)
                 .sum();
     }
+
     @GetMapping("/must-spending-customer")
     @ResponseBody
     @ApiOperation(value = "Show must spending customer")
-    public Customer getMistSpendingCustomer(){
+    public Customer getMustSpendingCustomer(){
         List<Customer> customers = customerServiceImpl.getAll();
         double mostSpendedMoney = customers.stream()
                 .map(customer -> customer
@@ -54,12 +55,32 @@ public class ReportController {
                         .map(Purchase::getPrice)
                         .mapToDouble(Double::doubleValue)
                         .sum())
-                .mapToDouble(Double::doubleValue).max()
+                .mapToDouble(Double::doubleValue)
+                .max()
                 .getAsDouble();
         return customers.stream()
-                .filter(customer -> customer.getPurchases().stream().map(Purchase::getPrice).mapToDouble(Double::doubleValue).sum() == mostSpendedMoney)
+                .filter(customer -> customer.getPurchases().stream()
+                        .map(Purchase::getPrice)
+                        .mapToDouble(Double::doubleValue)
+                        .sum() == mostSpendedMoney)
                 .findFirst()
                 .get();
+    }
+
+    @GetMapping("/must-spending-customer-spent-money")
+    @ResponseBody
+    @ApiOperation(value = "Show must spending customer's spent money")
+    public double getMustSpendingCustomersSpentMoney(){
+        List<Customer> customers = customerServiceImpl.getAll();
+        return customers.stream()
+                .map(customer -> customer
+                        .getPurchases().stream()
+                        .map(Purchase::getPrice)
+                        .mapToDouble(Double::doubleValue)
+                        .sum())
+                .mapToDouble(Double::doubleValue)
+                .max()
+                .getAsDouble();
     }
 
     @GetMapping("/show-grouped-customers")
