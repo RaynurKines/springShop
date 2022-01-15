@@ -63,4 +63,10 @@ public class PurchaseController {
         Purchase purchase = purchaseServiceImpl.getPurchaseById(id);
         purchaseServiceImpl.deletePurchase(purchase);
     }
+
+    @GetMapping("/{customer_id}/get-purchases")
+    @ApiOperation(value ="Get purchases by customer_id")
+    public List<Purchase> getPurchasesByCustomerId(@PathVariable("customer_id") long customerId) {
+        return purchaseServiceImpl.getAllByCustomer(customerId);
+    }
 }

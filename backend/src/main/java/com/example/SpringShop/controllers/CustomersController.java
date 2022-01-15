@@ -18,8 +18,6 @@ import java.util.List;
 public class CustomersController {
     @Autowired
     private CustomerServiceImpl customerServiceImpl;
-    @Autowired
-    private PurchaseServiceImpl purchaseServiceImpl;
 
     @GetMapping("/show-all")
     @ResponseBody
@@ -65,11 +63,5 @@ public class CustomersController {
     public void deleteCustomer(@PathVariable("id") long id) {
         Customer customer = customerServiceImpl.getCustomerById(id);
         customerServiceImpl.deleteCustomer(customer);
-    }
-
-    @GetMapping("/{id}/get-purchases")
-    @ApiOperation(value ="Get purchases by customer_id")
-    public List<Purchase> getPurchasesByCustomerId(@PathVariable("customer_id") long customerId) {
-        return purchaseServiceImpl.getAllByCustomer(customerId);
     }
 }
