@@ -2,7 +2,7 @@ package com.example.SpringShop.util;
 
 import com.example.SpringShop.generator.CustomersGenerator;
 import com.example.SpringShop.generator.ProductsGenerator;
-import com.example.SpringShop.generator.PurchaseGenerator;
+import com.example.SpringShop.generator.PurchasesGenerator;
 import com.example.SpringShop.model.Customer;
 import com.example.SpringShop.model.Product;
 import com.example.SpringShop.model.Purchase;
@@ -28,11 +28,11 @@ public class InitiateUtils implements CommandLineRunner {
     public void run(String... args) throws Exception {
         CustomersGenerator customersGenerator = new CustomersGenerator();
         ProductsGenerator productsGenerator = new ProductsGenerator();
-        PurchaseGenerator purchaseGenerator = new PurchaseGenerator();
+        PurchasesGenerator purchasesGenerator = new PurchasesGenerator();
 
         List<Customer> customers = customersGenerator.generateCustomers();
         List<Product> products = productsGenerator.generateProducts();
-        List<Purchase> purchases = purchaseGenerator.generatePurchases(customers, products);
+        List<Purchase> purchases = purchasesGenerator.generatePurchases(customers, products);
 
         customerServiceImpl.addCustomers(customers);
         productServiceImpl.addProducts(products);

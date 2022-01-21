@@ -18,7 +18,7 @@ function App() {
                     <Link style={{ textDecoration: 'none' }} to="/customers">Покупатели</Link>
                 </li>
                 <li>
-                    <Link style={{ textDecoration: 'none' }} to="/order">Заказ</Link>
+                    <Link style={{ textDecoration: 'none' }} to="/order">Заказы</Link>
                 </li>
                 <li>
                     <Link style={{ textDecoration: 'none' }} to="/order-create">Создание заказа</Link>

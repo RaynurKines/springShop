@@ -39,7 +39,7 @@ const Order = () => {
             if (res.status === 403) {
                 console.log('not Ok')
             }
-            if(res.status ===500){
+            if (res.status === 500) {
                 alert('товар уже был продан')
             }
         }).catch((errors) => console.error(errors))
@@ -69,16 +69,18 @@ const Order = () => {
                                     <td>{order.id}</td>
                                     <td>{order.customer}</td>
                                     <td>
-                                        {order.products.map(item=>
+                                        {order.products.map(item =>
                                             <tr>
                                                 <td>{item.name}</td>
                                             </tr>
                                         )}
                                     </td>
                                     <td>{order.price}</td>
-                                    <button className='btn' onClick={() => deletePost(order.id)}>
-                                        удалить позицию
-                                    </button>
+                                    <td>
+                                        <button className='btn' onClick={() => deletePost(order.id)}>
+                                            удалить позицию
+                                        </button>
+                                    </td>
                                 </tr>
                             </>
                         )}

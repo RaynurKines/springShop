@@ -7,7 +7,7 @@ import com.example.SpringShop.model.Purchase;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PurchaseGenerator {
+public class PurchasesGenerator {
     public List<Purchase> generatePurchases(List<Customer> customers, List<Product> products) {
         List<Purchase> purchases = new ArrayList<Purchase>();
 

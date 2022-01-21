@@ -47,8 +47,8 @@ const Products = () => {
             if (res.status === 403) {
                 console.log('not Ok')
             }
-            if(res.status ===500){
-               alert('товар уже был продан')
+            if (res.status === 500) {
+                alert('товар уже был продан')
             }
         }).catch((errors) => console.error(errors))
     }
@@ -90,9 +90,11 @@ const Products = () => {
                                 <tr>
                                     <td>{item.name}</td>
                                     <td>{item.price}</td>
-                                    <button className='btn' onClick={() => deletePost(item.id)}>
-                                        удалить позицию
-                                    </button>
+                                    <td>
+                                        <button className='btn' onClick={() => deletePost(item.id)}>
+                                            удалить позицию
+                                        </button>
+                                    </td>
                                 </tr>
                             </>
                         )}
@@ -102,7 +104,7 @@ const Products = () => {
             </div>
 
             <button onClick={() => setModalActive(true)}>
-                добавить позицию
+                Добавить позицию
             </button>
 
             <Modal active={modalActive} setActive={setModalActive}>

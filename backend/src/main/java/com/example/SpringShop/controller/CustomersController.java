@@ -1,9 +1,7 @@
-package com.example.SpringShop.controllers;
+package com.example.SpringShop.controller;
 
 import com.example.SpringShop.model.Customer;
-import com.example.SpringShop.model.Purchase;
 import com.example.SpringShop.service.impl.CustomerServiceImpl;
-import com.example.SpringShop.service.impl.PurchaseServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

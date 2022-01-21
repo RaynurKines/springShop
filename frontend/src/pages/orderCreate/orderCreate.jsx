@@ -8,8 +8,10 @@ const OrderCreate = () => {
 
     const order = []
 
-    Array.prototype.diff = function(a) {
-        return this.filter(function(i) {return a.indexOf(i) < 0;});
+    Array.prototype.diff = function (a) {
+        return this.filter(function (i) {
+            return a.indexOf(i) < 0;
+        });
     };
 
     const myHeaders = new Headers();
@@ -33,16 +35,16 @@ const OrderCreate = () => {
 
 
     const addProduct = async (id) => {
-        if(order.includes(id)) {
-            for(let i = order.length - 1; i >= 0; i--) {
-                if(order[i] === id) {
+        if (order.includes(id)) {
+            for (let i = order.length - 1; i >= 0; i--) {
+                if (order[i] === id) {
                     order.splice(i, 1);
                 }
             }
             console.log('уже есть')
             console.log(order)
 
-        }else{
+        } else {
             order.push(id)
             console.log(order)
         }
@@ -82,20 +84,23 @@ const OrderCreate = () => {
                         <tbody>
                         {products
                             .map(item =>
-                            <>
-                                <tr>
-                                    <td>{item.name}</td>
-                                    <td>{item.price}</td>
-                                    <input type="checkbox" id="order" name="order" onChange={()=> addProduct(item.id)}/>
-                                    <label htmlFor="order">Добавить в заказ</label>
-                                </tr>
-                            </>
-                        )}
+                                <>
+                                    <tr>
+                                        <td>{item.name}</td>
+                                        <td>{item.price}</td>
+                                        <td>
+                                            <input type="checkbox" id="order" name="order"
+                                                   onChange={() => addProduct(item.id)}/>
+                                            <label htmlFor="order">Добавить в заказ</label>
+                                        </td>
+                                    </tr>
+                                </>
+                            )}
                         </tbody>
                     </table>
                 </div>
             </div>
-            <button onClick={()=>createOrder()}>Создать заказ</button>
+            <button onClick={() => createOrder()}>Создать заказ</button>
         </div>
     );
 };

@@ -1,4 +1,4 @@
-package com.example.SpringShop.controllers;
+package com.example.SpringShop.controller;
 
 import com.example.SpringShop.model.Product;
 import com.example.SpringShop.service.impl.ProductServiceImpl;

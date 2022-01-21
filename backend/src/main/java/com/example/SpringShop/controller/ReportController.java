@@ -1,4 +1,4 @@
-package com.example.SpringShop.controllers;
+package com.example.SpringShop.controller;
 
 import com.example.SpringShop.model.Customer;
 import com.example.SpringShop.model.Purchase;
